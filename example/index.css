@@ -1,0 +1,9 @@
+#terminal {
+  width: 800px;
+  height: 500px;
+  background: black;
+  border-radius: 5px;
+  border: 2px solid #4682B4;
+  padding: 10px 20px 10px 20px;
+  float: right;
+}

@@ -11,9 +11,12 @@
     "url": "git://github.com/thlorenz/hypernal.git"
   },
   "homepage": "https://github.com/thlorenz/hypernal",
-  "dependencies": {},
+  "dependencies": {
+    "through": "~2.2.7"
+  },
   "devDependencies": {
-    "browserify": "~2.11.0"
+    "browserify": "~2.11.0",
+    "mold-source-map": "~0.2.0"
   },
   "keywords": [],
   "author": {
