@@ -1456,14 +1456,6 @@ Terminal.prototype.write = function(data) {
                 // CSI Ps ; Ps ; Ps ; Ps ; Ps T
                 // CSI > Ps; Ps T
             case 'T':
-                // if (this.prefix === '>') {
-                // this.resetTitleModes(this.params);
-                // break;
-                // }
-                // if (this.params.length > 2) {
-                // this.initMouseTracking(this.params);
-                // break;
-                // }
                 if (this.params.length < 2 && !this.prefix) {
                     this.scrollDown(this.params);
                 }
@@ -1484,199 +1476,13 @@ Terminal.prototype.write = function(data) {
             case 'g':
                 this.tabClear(this.params);
                 break;
-
-                // CSI Pm i Media Copy (MC).
-                // CSI ? Pm i
-                // case 'i':
-                // this.mediaCopy(this.params);
-                // break;
-
-                // CSI Pm m Character Attributes (SGR).
-                // CSI > Ps; Ps m
-                // case 'm': // duplicate
-                // if (this.prefix === '>') {
-                // this.setResources(this.params);
-                // } else {
-                // this.charAttributes(this.params);
-                // }
-                // break;
-
-                // CSI Ps n Device Status Report (DSR).
-                // CSI > Ps n
-                // case 'n': // duplicate
-                // if (this.prefix === '>') {
-                // this.disableModifiers(this.params);
-                // } else {
-                // this.deviceStatus(this.params);
-                // }
-                // break;
-
-                // CSI > Ps p Set pointer mode.
-                // CSI ! p Soft terminal reset (DECSTR).
-                // CSI Ps$ p
-                // Request ANSI mode (DECRQM).
-                // CSI ? Ps$ p
-                // Request DEC private mode (DECRQM).
-                // CSI Ps ; Ps " p
             case 'p':
                 switch (this.prefix) {
-                    // case '>':
-                    // this.setPointerMode(this.params);
-                    // break;
                 case '!':
                     this.softReset(this.params);
                     break;
-                    // case '?':
-                    // if (this.postfix === '$') {
-                    // this.requestPrivateMode(this.params);
-                    // }
-                    // break;
-                    // default:
-                    // if (this.postfix === '"') {
-                    // this.setConformanceLevel(this.params);
-                    // } else if (this.postfix === '$') {
-                    // this.requestAnsiMode(this.params);
-                    // }
-                    // break;
                 }
                 break;
-
-                // CSI Ps q Load LEDs (DECLL).
-                // CSI Ps SP q
-                // CSI Ps " q
-                // case 'q':
-                // if (this.postfix === ' ') {
-                // this.setCursorStyle(this.params);
-                // break;
-                // }
-                // if (this.postfix === '"') {
-                // this.setCharProtectionAttr(this.params);
-                // break;
-                // }
-                // this.loadLEDs(this.params);
-                // break;
-
-                // CSI Ps ; Ps r
-                // Set Scrolling Region [top;bottom] (default = full size of win-
-                // dow) (DECSTBM).
-                // CSI ? Pm r
-                // CSI Pt; Pl; Pb; Pr; Ps$ r
-                // case 'r': // duplicate
-                // if (this.prefix === '?') {
-                // this.restorePrivateValues(this.params);
-                // } else if (this.postfix === '$') {
-                // this.setAttrInRectangle(this.params);
-                // } else {
-                // this.setScrollRegion(this.params);
-                // }
-                // break;
-
-                // CSI s Save cursor (ANSI.SYS).
-                // CSI ? Pm s
-                // case 's': // duplicate
-                // if (this.prefix === '?') {
-                // this.savePrivateValues(this.params);
-                // } else {
-                // this.saveCursor(this.params);
-                // }
-                // break;
-
-                // CSI Ps ; Ps ; Ps t
-                // CSI Pt; Pl; Pb; Pr; Ps$ t
-                // CSI > Ps; Ps t
-                // CSI Ps SP t
-                // case 't':
-                // if (this.postfix === '$') {
-                // this.reverseAttrInRectangle(this.params);
-                // } else if (this.postfix === ' ') {
-                // this.setWarningBellVolume(this.params);
-                // } else {
-                // if (this.prefix === '>') {
-                // this.setTitleModeFeature(this.params);
-                // } else {
-                // this.manipulateWindow(this.params);
-                // }
-                // }
-                // break;
-
-                // CSI u Restore cursor (ANSI.SYS).
-                // CSI Ps SP u
-                // case 'u': // duplicate
-                // if (this.postfix === ' ') {
-                // this.setMarginBellVolume(this.params);
-                // } else {
-                // this.restoreCursor(this.params);
-                // }
-                // break;
-
-                // CSI Pt; Pl; Pb; Pr; Pp; Pt; Pl; Pp$ v
-                // case 'v':
-                // if (this.postfix === '$') {
-                // this.copyRectagle(this.params);
-                // }
-                // break;
-
-                // CSI Pt ; Pl ; Pb ; Pr ' w
-                // case 'w':
-                // if (this.postfix === '\'') {
-                // this.enableFilterRectangle(this.params);
-                // }
-                // break;
-
-                // CSI Ps x Request Terminal Parameters (DECREQTPARM).
-                // CSI Ps x Select Attribute Change Extent (DECSACE).
-                // CSI Pc; Pt; Pl; Pb; Pr$ x
-                // case 'x':
-                // if (this.postfix === '$') {
-                // this.fillRectangle(this.params);
-                // } else {
-                // this.requestParameters(this.params);
-                // //this.__(this.params);
-                // }
-                // break;
-
-                // CSI Ps ; Pu ' z
-                // CSI Pt; Pl; Pb; Pr$ z
-                // case 'z':
-                // if (this.postfix === '\'') {
-                // this.enableLocatorReporting(this.params);
-                // } else if (this.postfix === '$') {
-                // this.eraseRectangle(this.params);
-                // }
-                // break;
-
-                // CSI Pm ' {
-                // CSI Pt; Pl; Pb; Pr$ {
-                // case '{':
-                // if (this.postfix === '\'') {
-                // this.setLocatorEvents(this.params);
-                // } else if (this.postfix === '$') {
-                // this.selectiveEraseRectangle(this.params);
-                // }
-                // break;
-
-                // CSI Ps ' |
-                // case '|':
-                // if (this.postfix === '\'') {
-                // this.requestLocatorPosition(this.params);
-                // }
-                // break;
-
-                // CSI P m SP }
-                // Insert P s Column(s) (default = 1) (DECIC), VT420 and up.
-                // case '}':
-                // if (this.postfix === ' ') {
-                // this.insertColumns(this.params);
-                // }
-                // break;
-
-                // CSI P m SP ~
-                // Delete P s Column(s) (default = 1) (DECDC), VT420 and up
-                // case '~':
-                // if (this.postfix === ' ') {
-                // this.deleteColumns(this.params);
-                // }
-                // break;
 
             default:
                 this.error('Unknown CSI code: %s.', ch);
@@ -1736,17 +1542,6 @@ Terminal.prototype.write = function(data) {
                 case '+p':
                     break;
 
-                    // Request Termcap/Terminfo String (xterm, experimental)
-                    // Regular xterm does not even respond to this sequence.
-                    // This can cause a small glitch in vim.
-                    // test: echo -ne '\eP+q6b64\e\\'
-                case '+q':
-                    var pt = this.currentParam,
-                        valid = false;
-
-                    this.send('\x1bP' + +valid + '+r' + pt + '\x1b\\');
-                    break;
-
                 default:
                     this.error('Unknown DCS prefix: %s.', this.prefix);
                     break;
@@ -1788,6 +1583,8 @@ Terminal.prototype.write = function(data) {
 };
 
 Terminal.prototype.writeln = function(data) {
+    // properly render empty lines
+    if (!data.trim().length) data = '&nbsp;';
     this.write(data + '\r\n');
 };
 
@@ -2150,12 +1947,6 @@ Terminal.prototype.resize = function(x, y) {
 Terminal.prototype.updateRange = function(y) {
     if (y < this.refreshStart) this.refreshStart = y;
     if (y > this.refreshEnd) this.refreshEnd = y;
-    // if (y > this.refreshEnd) {
-    // this.refreshEnd = y;
-    // if (y > this.rows - 1) {
-    // this.refreshEnd = this.rows - 1;
-    // }
-    // }
 };
 
 Terminal.prototype.maxRange = function() {
