@@ -18,23 +18,16 @@ var EventEmitter = require('events')
 
 module.exports = Terminal;
 
-function Terminal(cols, rows, handler) {
+function Terminal(cols, rows, opts) {
     if (!(this instanceof Terminal)) return new Terminal(cols, rows, handler);
     EventEmitter.call(this);
 
-    var options;
-    if (typeof cols === 'object') {
-        options = cols;
-        cols = options.cols;
-        rows = options.rows;
-        handler = options.handler;
-    }
-    this._options = options || {};
+    this._options = opts || {};
 
     this.cols = cols || Terminal.geometry[0];
     this.rows = rows || Terminal.geometry[1];
 
-    if (handler) {
+    if (this._options.handler) {
         this.on('data', handler);
     }
 
@@ -104,6 +97,8 @@ function Terminal(cols, rows, handler) {
 
     this.tabs;
     this.setupStops();
+
+    this.tabspace = this._options.tabspace || '  ';
 }
 
 inherits(Terminal, EventEmitter);
@@ -1585,6 +1580,10 @@ Terminal.prototype.write = function(data) {
 Terminal.prototype.writeln = function(data) {
     // properly render empty lines
     if (!data.trim().length) data = '&nbsp;';
+    data = data
+      .replace('\t', this.tabspace)
+      .replace(/ /g, '&nbsp;')
+      ;
     this.write(data + '\r\n');
 };
 

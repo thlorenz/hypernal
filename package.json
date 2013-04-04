@@ -4,7 +4,8 @@
   "description": "Renders terminal output as html to simplify reusing server side modules in the browser.",
   "main": "hypernal.js",
   "scripts": {
-    "test": "node-trap test/*.js"
+    "test": "node-trap test/*.js",
+    "demo": "node example/build && npm install opener && opener example/index.html"
   },
   "repository": {
     "type": "git",
@@ -16,7 +17,7 @@
   },
   "devDependencies": {
     "browserify": "~2.11.0",
-    "mold-source-map": "~0.2.0"
+    "difflet": "~0.2.3"
   },
   "keywords": [],
   "author": {

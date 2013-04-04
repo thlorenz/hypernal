@@ -3,11 +3,10 @@
 
 var Terminal = require('./term')
   , through = require('through')
-  , colors = require('ansicolors')
   ;
 
-module.exports = function (cols, rows, handler) {
-  var term = new Terminal(cols, rows, handler);
+module.exports = function (cols, rows, opts) {
+  var term = new Terminal(cols, rows, opts);
   term.open();
   
   var hypernal = through(term.write.bind(term));
