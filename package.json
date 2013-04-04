@@ -19,7 +19,7 @@
     "browserify": "~2.11.0",
     "difflet": "~0.2.3"
   },
-  "keywords": [],
+  "keywords": ["terminal", "render", "browser", "ansi", "colors"],
   "author": {
     "name": "Thorsten Lorenz",
     "email": "thlorenz@gmx.de",
