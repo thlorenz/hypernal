@@ -49,7 +49,6 @@ require('browserify')()
 }
 ```
 
-**renders**
 ![difflet.png](https://github.com/thlorenz/hypernal/raw/master/assets/difflet.png)
 
 Full Example [here](https://github.com/thlorenz/hypernal/tree/master/example)
