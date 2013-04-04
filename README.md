@@ -51,7 +51,7 @@ require('browserify')()
 
 ![difflet.png](https://github.com/thlorenz/hypernal/raw/master/assets/difflet.png)
 
-Full Example [here](https://github.com/thlorenz/hypernal/tree/master/example)
+View [more complete example](http://thlorenz.github.com/hypernal/) and its [source](https://github.com/thlorenz/hypernal/tree/master/example)
 
 ## Installation
 
