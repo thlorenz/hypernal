@@ -1,6 +1,6 @@
 {
   "name": "hypernal",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Renders terminal output as html to simplify reusing server side modules in the browser.",
   "main": "hypernal.js",
   "scripts": {
@@ -19,7 +19,13 @@
     "browserify": "~2.11.0",
     "difflet": "~0.2.3"
   },
-  "keywords": ["terminal", "render", "browser", "ansi", "colors"],
+  "keywords": [
+    "terminal",
+    "render",
+    "browser",
+    "ansi",
+    "colors"
+  ],
   "author": {
     "name": "Thorsten Lorenz",
     "email": "thlorenz@gmx.de",
