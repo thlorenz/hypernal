@@ -82,6 +82,10 @@ writes the given string to the terminal.
 
 writes the given string to the terminal and adds a line break.
 
+***term.reset()***
+
+clears the terminal
+
 ## Kudos
 
 hypernal is basically a trimmed down version of [tty.js](https://github.com/chjj/tty.js/) focused on rendering only.

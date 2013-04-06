@@ -22,6 +22,7 @@ module.exports = function (cols, rows, opts) {
   };
 
   hypernal.write = term.write.bind(term);
+  hypernal.reset = term.reset.bund(term);
 
   return hypernal;
 };
