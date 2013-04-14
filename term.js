@@ -1578,12 +1578,10 @@ Terminal.prototype.write = function(data) {
 };
 
 Terminal.prototype.writeln = function(data) {
+    data = data.replace('\t', this.tabspace);
+
     // properly render empty lines
     if (!data.trim().length) data = '&nbsp;';
-    data = data
-      .replace('\t', this.tabspace)
-      .replace(/ /g, '&nbsp;')
-      ;
     this.write(data + '\r\n');
 };
 

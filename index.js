@@ -21,8 +21,13 @@ module.exports = function (cols, rows, opts) {
     term.writeln(line);
   };
 
-  hypernal.write = term.write.bind(term);
-  hypernal.reset = term.reset.bund(term);
+  // convenience shortcuts
+  hypernal.write   =  term.write.bind(term);
+  hypernal.reset   =  term.reset.bind(term);
+  hypernal.element =  term.element;
+
+  // the underlying term for all other needs
+  hypernal.term = term;
 
   return hypernal;
 };
