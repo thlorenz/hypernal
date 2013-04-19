@@ -1583,6 +1583,9 @@ Terminal.prototype.writeln = function(data) {
     // properly render empty lines
     if (!data.trim().length) data = '&nbsp;';
     this.write(data + '\r\n');
+
+    // fix newlines not properly respected otherwise
+    if (data.charAt(data.length - 1) === '\n') this.writeln(' ');
 };
 
 Terminal.prototype.keyDown = function(ev) {
