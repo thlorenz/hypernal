@@ -111,9 +111,6 @@ require('./lib/focus')(Terminal);
 require('./lib/open')(Terminal);
 require('./lib/destroy')(Terminal);
 require('./lib/refresh')(Terminal);
-require('./lib/cursor')(Terminal);
-
-
 
 Terminal.prototype.scroll = function() {
     var row;
