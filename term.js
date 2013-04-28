@@ -3,6 +3,15 @@
 var states = require('./lib/states');
 
 /**
+* Helpers
+*/
+var on       =  require('./lib/helpers/on')
+  , off      =  require('./lib/helpers/off')
+  , cancel   =  require('./lib/helpers/cancel')
+  , inherits =  require('./lib/helpers/inherits')
+  ;
+
+/**
 * Terminal
 */
 
@@ -101,23 +110,6 @@ require('./lib/options')(Terminal);
 require('./lib/focus')(Terminal);
 
 
-/**
-* Global Events for key handling
-*/
-
-Terminal.bindKeys = function() {
-    if (Terminal.focus) return;
-
-    // We could put an "if (Terminal.focus)" check
-    // here, but it shouldn't be necessary.
-    on(document, 'keydown', function(ev) {
-        return Terminal.focus.keyDown(ev);
-    }, true);
-
-    on(document, 'keypress', function(ev) {
-        return Terminal.focus.keyPress(ev);
-    }, true);
-};
 
 /**
 * Open Terminal
@@ -2869,33 +2861,7 @@ Terminal.charsets.Swedish = null; // (H or (7
 Terminal.charsets.Swiss = null; // (=
 Terminal.charsets.ISOLatin = null; // /A
 
-/**
-* Helpers
-*/
-
-function on(el, type, handler, capture) {
-    el.addEventListener(type, handler, capture || false);
-}
-
-function off(el, type, handler, capture) {
-    el.removeEventListener(type, handler, capture || false);
-}
-
-function cancel(ev) {
-    if (ev.preventDefault) ev.preventDefault();
-    ev.returnValue = false;
-    if (ev.stopPropagation) ev.stopPropagation();
-    ev.cancelBubble = true;
-    return false;
-}
-
-function inherits(child, parent) {
-    function f() {
-        this.constructor = child;
-    }
-    f.prototype = parent.prototype;
-    child.prototype = new f;
-}
+  
 
 var isMac = ~navigator.userAgent.indexOf('Mac');
 
