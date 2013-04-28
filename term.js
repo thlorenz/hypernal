@@ -109,21 +109,9 @@ require('./lib/colors')(Terminal);
 require('./lib/options')(Terminal);
 require('./lib/focus')(Terminal);
 require('./lib/open')(Terminal);
+require('./lib/destroy')(Terminal);
 
 
-
-/**
-* Destroy Terminal
-*/
-
-Terminal.prototype.destroy = function() {
-    this.readable = false;
-    this.writable = false;
-    this._events = {};
-    this.handler = function() {};
-    this.write = function() {};
-    //this.emit('close');
-};
 
 /**
 * Rendering Engine
