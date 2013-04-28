@@ -1,0 +1,29 @@
+{
+  "name": "example",
+  "version": "0.0.0",
+  "description": "hypernal example",
+  "main": "example.js",
+  "scripts": {
+    "test": "node-trap test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/thlorenz/example.git"
+  },
+  "homepage": "https://github.com/thlorenz/example",
+  "dependencies": {},
+  "devDependencies": {
+    "ecstatic": "~0.4.2",
+    "mold-source-map": "~0.2.0"
+  },
+  "keywords": [],
+  "author": {
+    "name": "Thorsten Lorenz",
+    "email": "thlorenz@gmx.de",
+    "url": "http://thlorenz.com"
+  },
+  "license": "MIT",
+  "engine": {
+    "node": ">=0.6"
+  }
+}
