@@ -111,8 +111,9 @@ require('./lib/focus')(Terminal);
 require('./lib/open')(Terminal);
 require('./lib/destroy')(Terminal);
 require('./lib/refresh')(Terminal);
+
+// used by write, but most likely can be removed
 require('./lib/scroll')(Terminal);
-require('./lib/scrollDisp')(Terminal);
 
 require('./lib/write')(Terminal);
 
