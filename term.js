@@ -97,20 +97,8 @@ function Terminal(cols, rows, opts) {
 inherits(Terminal, EventEmitter);
 
 require('./lib/colors')(Terminal);
+require('./lib/options')(Terminal);
 
-/**
-* Options
-*/
-
-Terminal.termName = 'xterm';
-Terminal.geometry = [80, 24];
-Terminal.cursorBlink = true;
-Terminal.visualBell = false;
-Terminal.popOnBell = false;
-Terminal.scrollback = 1000;
-Terminal.screenKeys = false;
-Terminal.programFeatures = false;
-Terminal.debug = false;
 
 /**
 * Focused Terminal
