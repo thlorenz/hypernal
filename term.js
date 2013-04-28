@@ -109,7 +109,6 @@ require('./lib/colors')(Terminal);
 require('./lib/options')(Terminal);
 require('./lib/focus')(Terminal);
 require('./lib/open')(Terminal);
-require('./lib/bindMouse')(Terminal);
 
 
 
