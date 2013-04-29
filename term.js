@@ -127,6 +127,7 @@ require('./lib/debug')(Terminal);
 
 require('./lib/send')(Terminal);
 require('./lib/resize')(Terminal);
+require('./lib/stops')(Terminal);
 
 
 Terminal.prototype.updateRange = function(y) {
@@ -139,32 +140,6 @@ Terminal.prototype.maxRange = function() {
     this.refreshEnd = this.rows - 1;
 };
 
-Terminal.prototype.setupStops = function(i) {
-    if (i != null) {
-        if (!this.tabs[i]) {
-            i = this.prevStop(i);
-        }
-    } else {
-        this.tabs = {};
-        i = 0;
-    }
-
-    for (; i < this.cols; i += 8) {
-        this.tabs[i] = true;
-    }
-};
-
-Terminal.prototype.prevStop = function(x) {
-    if (x == null) x = this.x;
-    while (!this.tabs[--x] && x > 0);
-    return x >= this.cols ? this.cols - 1 : x < 0 ? 0 : x;
-};
-
-Terminal.prototype.nextStop = function(x) {
-    if (x == null) x = this.x;
-    while (!this.tabs[++x] && x < this.cols);
-    return x >= this.cols ? this.cols - 1 : x < 0 ? 0 : x;
-};
 
 Terminal.prototype.eraseRight = function(x, y) {
     var line = this.lines[this.ybase + y],
