@@ -136,16 +136,6 @@ Terminal.prototype.send = function(data) {
     this.queue += data;
 };
 
-Terminal.prototype.bell = function() {
-    if (!Terminal.visualBell) return;
-    var self = this;
-    this.element.style.borderColor = 'white';
-    setTimeout(function() {
-        self.element.style.borderColor = '';
-    }, 10);
-    if (Terminal.popOnBell) this.focus();
-};
-
 Terminal.prototype.log = function() {
     if (!Terminal.debug) return;
     if (!window.console || !window.console.log) return;
