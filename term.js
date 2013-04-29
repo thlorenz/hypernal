@@ -171,16 +171,8 @@ require('./lib/csi/sendDeviceAttributes')(Terminal);
 require('./lib/csi/cursor')(Terminal);
 require('./lib/csi/scroll')(Terminal);
 require('./lib/csi/rectangle')(Terminal);
+require('./lib/csi/repeatPrecedingCharacter')(Terminal);
 
-
-// CSI Ps b Repeat the preceding graphic character Ps times (REP).
-Terminal.prototype.repeatPrecedingCharacter = function(params) {
-    var param = params[0] || 1,
-        line = this.lines[this.ybase + this.y],
-        ch = line[this.x - 1] || [this.defAttr, ' '];
-
-    while (param--) line[this.x++] = ch;
-};
 
 // CSI Ps g Tab Clear (TBC).
 // Ps = 0 -> Clear Current Column (default).
