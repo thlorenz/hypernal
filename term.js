@@ -126,17 +126,8 @@ require('./lib/stops')(Terminal);
 
 require('./lib/erase')(Terminal);
 require('./lib/blankLine')(Terminal);
+require('./lib/range')(Terminal);
 
-
-Terminal.prototype.updateRange = function(y) {
-    if (y < this.refreshStart) this.refreshStart = y;
-    if (y > this.refreshEnd) this.refreshEnd = y;
-};
-
-Terminal.prototype.maxRange = function() {
-    this.refreshStart = 0;
-    this.refreshEnd = this.rows - 1;
-};
 
 Terminal.prototype.ch = function(cur) {
     return cur ? [this.curAttr, ' '] : [this.defAttr, ' '];
@@ -148,7 +139,7 @@ Terminal.prototype.is = function(term) {
         .indexOf(term) === 0;
 };
 
-// require('./lib/handlers')(Terminal);
+require('./lib/handlers')(Terminal);
 
 require('./lib/ESC.js')(Terminal);
 
