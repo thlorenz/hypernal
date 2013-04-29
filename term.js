@@ -130,6 +130,7 @@ require('./lib/resize')(Terminal);
 require('./lib/stops')(Terminal);
 
 require('./lib/erase')(Terminal);
+require('./lib/blankLine')(Terminal);
 
 
 Terminal.prototype.updateRange = function(y) {
@@ -144,19 +145,6 @@ Terminal.prototype.maxRange = function() {
 
 
 
-Terminal.prototype.blankLine = function(cur) {
-    var attr = cur ? this.curAttr : this.defAttr;
-
-    var ch = [attr, ' '],
-        line = [],
-        i = 0;
-
-    for (; i < this.cols; i++) {
-        line[i] = ch;
-    }
-
-    return line;
-};
 
 Terminal.prototype.ch = function(cur) {
     return cur ? [this.curAttr, ' '] : [this.defAttr, ' '];
