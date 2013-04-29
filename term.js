@@ -117,18 +117,8 @@ require('./lib/scroll')(Terminal);
 
 require('./lib/write')(Terminal);
 
-
-Terminal.prototype.setgLevel = function(g) {
-    this.glevel = g;
-    this.charset = this.charsets[g];
-};
-
-Terminal.prototype.setgCharset = function(g, charset) {
-    this.charsets[g] = charset;
-    if (this.glevel === g) {
-        this.charset = charset;
-    }
-};
+require('./lib/setgLevel');
+require('./lib/setgCharset');
 
 Terminal.prototype.keyPress = function(ev) {
     var key;
