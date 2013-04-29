@@ -168,6 +168,7 @@ require('./lib/csi/charAttributes')(Terminal);
 require('./lib/csi/insert-delete')(Terminal);
 require('./lib/csi/position')(Terminal);
 require('./lib/csi/sendDeviceAttributes')(Terminal);
+require('./lib/csi/cursor')(Terminal);
 
 
 // CSI Ps ; Ps r
@@ -182,19 +183,6 @@ Terminal.prototype.setScrollRegion = function(params) {
     this.y = 0;
 };
 
-// CSI s
-// Save cursor (ANSI.SYS).
-Terminal.prototype.saveCursor = function(params) {
-    this.savedX = this.x;
-    this.savedY = this.y;
-};
-
-// CSI u
-// Restore cursor (ANSI.SYS).
-Terminal.prototype.restoreCursor = function(params) {
-    this.x = this.savedX || 0;
-    this.y = this.savedY || 0;
-};
 
 /**
 * Lesser Used
