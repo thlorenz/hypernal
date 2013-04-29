@@ -127,17 +127,8 @@ require('./lib/stops')(Terminal);
 require('./lib/erase')(Terminal);
 require('./lib/blankLine')(Terminal);
 require('./lib/range')(Terminal);
+require('./lib/util')(Terminal);
 
-
-Terminal.prototype.ch = function(cur) {
-    return cur ? [this.curAttr, ' '] : [this.defAttr, ' '];
-};
-
-Terminal.prototype.is = function(term) {
-    var name = this.termName || Terminal.termName;
-    return (name + '')
-        .indexOf(term) === 0;
-};
 
 require('./lib/handlers')(Terminal);
 
