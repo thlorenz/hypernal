@@ -129,10 +129,11 @@ require('./lib/blankLine')(Terminal);
 require('./lib/range')(Terminal);
 require('./lib/util')(Terminal);
 
-
 require('./lib/handlers')(Terminal);
 
-require('./lib/ESC.js')(Terminal);
+require('./lib/esc/index.js')(Terminal);
+require('./lib/esc/reset.js')(Terminal);
+require('./lib/esc/tabSet.js')(Terminal);
 
 require('./lib/csi/deviceStatus')(Terminal);
 require('./lib/csi/charAttributes')(Terminal);
