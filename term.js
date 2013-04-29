@@ -129,6 +129,8 @@ require('./lib/send')(Terminal);
 require('./lib/resize')(Terminal);
 require('./lib/stops')(Terminal);
 
+require('./lib/erase')(Terminal);
+
 
 Terminal.prototype.updateRange = function(y) {
     if (y < this.refreshStart) this.refreshStart = y;
@@ -141,30 +143,6 @@ Terminal.prototype.maxRange = function() {
 };
 
 
-Terminal.prototype.eraseRight = function(x, y) {
-    var line = this.lines[this.ybase + y],
-        ch = [this.curAttr, ' ']; // xterm
-
-    for (; x < this.cols; x++) {
-        line[x] = ch;
-    }
-
-    this.updateRange(y);
-};
-
-Terminal.prototype.eraseLeft = function(x, y) {
-    var line = this.lines[this.ybase + y],
-        ch = [this.curAttr, ' ']; // xterm
-
-    x++;
-    while (x--) line[x] = ch;
-
-    this.updateRange(y);
-};
-
-Terminal.prototype.eraseLine = function(y) {
-    this.eraseRight(0, y);
-};
 
 Terminal.prototype.blankLine = function(cur) {
     var attr = cur ? this.curAttr : this.defAttr;
