@@ -172,19 +172,6 @@ require('./lib/csi/cursor')(Terminal);
 require('./lib/csi/scroll')(Terminal);
 require('./lib/csi/rectangle')(Terminal);
 
-/**
-* Lesser Used
-*/
-
-
-
-// CSI Ps Z Cursor Backward Tabulation Ps tab stops (default = 1) (CBT).
-Terminal.prototype.cursorBackwardTab = function(params) {
-    var param = params[0] || 1;
-    while (param--) {
-        this.x = this.prevStop();
-    }
-};
 
 // CSI Ps b Repeat the preceding graphic character Ps times (REP).
 Terminal.prototype.repeatPrecedingCharacter = function(params) {
