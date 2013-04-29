@@ -179,27 +179,6 @@ require('./lib/csi/scroll')(Terminal);
 */
 
 
-// CSI Ps ; Ps ; Ps ; Ps ; Ps T
-// Initiate highlight mouse tracking. Parameters are
-// [func;startx;starty;firstrow;lastrow]. See the section Mouse
-// Tracking.
-Terminal.prototype.initMouseTracking = function(params) {
-    // Relevant: DECSET 1001
-};
-
-// CSI > Ps; Ps T
-// Reset one or more features of the title modes to the default
-// value. Normally, "reset" disables the feature. It is possi-
-// ble to disable the ability to reset features by compiling a
-// different default for the title modes into xterm.
-// Ps = 0 -> Do not set window/icon labels using hexadecimal.
-// Ps = 1 -> Do not query window/icon labels using hexadeci-
-// mal.
-// Ps = 2 -> Do not set window/icon labels using UTF-8.
-// Ps = 3 -> Do not query window/icon labels using UTF-8.
-// (See discussion of "Title Modes").
-Terminal.prototype.resetTitleModes = function(params) {;
-};
 
 // CSI Ps Z Cursor Backward Tabulation Ps tab stops (default = 1) (CBT).
 Terminal.prototype.cursorBackwardTab = function(params) {
@@ -233,61 +212,6 @@ Terminal.prototype.tabClear = function(params) {
     }
 };
 
-// CSI Pm i Media Copy (MC).
-// Ps = 0 -> Print screen (default).
-// Ps = 4 -> Turn off printer controller mode.
-// Ps = 5 -> Turn on printer controller mode.
-// CSI ? Pm i
-// Media Copy (MC, DEC-specific).
-// Ps = 1 -> Print line containing cursor.
-// Ps = 4 -> Turn off autoprint mode.
-// Ps = 5 -> Turn on autoprint mode.
-// Ps = 1 0 -> Print composed display, ignores DECPEX.
-// Ps = 1 1 -> Print all pages.
-Terminal.prototype.mediaCopy = function(params) {;
-};
-
-// CSI > Ps; Ps m
-// Set or reset resource-values used by xterm to decide whether
-// to construct escape sequences holding information about the
-// modifiers pressed with a given key. The first parameter iden-
-// tifies the resource to set/reset. The second parameter is the
-// value to assign to the resource. If the second parameter is
-// omitted, the resource is reset to its initial value.
-// Ps = 1 -> modifyCursorKeys.
-// Ps = 2 -> modifyFunctionKeys.
-// Ps = 4 -> modifyOtherKeys.
-// If no parameters are given, all resources are reset to their
-// initial values.
-Terminal.prototype.setResources = function(params) {;
-};
-
-// CSI > Ps n
-// Disable modifiers which may be enabled via the CSI > Ps; Ps m
-// sequence. This corresponds to a resource value of "-1", which
-// cannot be set with the other sequence. The parameter identi-
-// fies the resource to be disabled:
-// Ps = 1 -> modifyCursorKeys.
-// Ps = 2 -> modifyFunctionKeys.
-// Ps = 4 -> modifyOtherKeys.
-// If the parameter is omitted, modifyFunctionKeys is disabled.
-// When modifyFunctionKeys is disabled, xterm uses the modifier
-// keys to make an extended sequence of functions rather than
-// adding a parameter to each function key to denote the modi-
-// fiers.
-Terminal.prototype.disableModifiers = function(params) {;
-};
-
-// CSI > Ps p
-// Set resource value pointerMode. This is used by xterm to
-// decide whether to hide the pointer cursor as the user types.
-// Valid values for the parameter:
-// Ps = 0 -> never hide the pointer.
-// Ps = 1 -> hide if the mouse tracking mode is not enabled.
-// Ps = 2 -> always hide the pointer. If no parameter is
-// given, xterm uses the default, which is 1 .
-Terminal.prototype.setPointerMode = function(params) {;
-};
 
 // CSI ! p Soft terminal reset (DECSTR).
 // http://vt100.net/docs/vt220-rm/table4-10.html
@@ -304,76 +228,6 @@ Terminal.prototype.softReset = function(params) {
     this.charset = null;
     this.glevel = 0; // ??
     this.charsets = [null]; // ??
-};
-
-// CSI Ps$ p
-// Request ANSI mode (DECRQM). For VT300 and up, reply is
-// CSI Ps; Pm$ y
-// where Ps is the mode number as in RM, and Pm is the mode
-// value:
-// 0 - not recognized
-// 1 - set
-// 2 - reset
-// 3 - permanently set
-// 4 - permanently reset
-Terminal.prototype.requestAnsiMode = function(params) {;
-};
-
-// CSI ? Ps$ p
-// Request DEC private mode (DECRQM). For VT300 and up, reply is
-// CSI ? Ps; Pm$ p
-// where Ps is the mode number as in DECSET, Pm is the mode value
-// as in the ANSI DECRQM.
-Terminal.prototype.requestPrivateMode = function(params) {;
-};
-
-// CSI Ps ; Ps " p
-// Set conformance level (DECSCL). Valid values for the first
-// parameter:
-// Ps = 6 1 -> VT100.
-// Ps = 6 2 -> VT200.
-// Ps = 6 3 -> VT300.
-// Valid values for the second parameter:
-// Ps = 0 -> 8-bit controls.
-// Ps = 1 -> 7-bit controls (always set for VT100).
-// Ps = 2 -> 8-bit controls.
-Terminal.prototype.setConformanceLevel = function(params) {;
-};
-
-// CSI Ps q Load LEDs (DECLL).
-// Ps = 0 -> Clear all LEDS (default).
-// Ps = 1 -> Light Num Lock.
-// Ps = 2 -> Light Caps Lock.
-// Ps = 3 -> Light Scroll Lock.
-// Ps = 2 1 -> Extinguish Num Lock.
-// Ps = 2 2 -> Extinguish Caps Lock.
-// Ps = 2 3 -> Extinguish Scroll Lock.
-Terminal.prototype.loadLEDs = function(params) {;
-};
-
-// CSI Ps SP q
-// Set cursor style (DECSCUSR, VT520).
-// Ps = 0 -> blinking block.
-// Ps = 1 -> blinking block (default).
-// Ps = 2 -> steady block.
-// Ps = 3 -> blinking underline.
-// Ps = 4 -> steady underline.
-Terminal.prototype.setCursorStyle = function(params) {;
-};
-
-// CSI Ps " q
-// Select character protection attribute (DECSCA). Valid values
-// for the parameter:
-// Ps = 0 -> DECSED and DECSEL can erase (default).
-// Ps = 1 -> DECSED and DECSEL cannot erase.
-// Ps = 2 -> DECSED and DECSEL can erase.
-Terminal.prototype.setCharProtectionAttr = function(params) {;
-};
-
-// CSI ? Pm r
-// Restore DEC Private Mode Values. The value of Ps previously
-// saved is restored. Ps values are the same as for DECSET.
-Terminal.prototype.restorePrivateValues = function(params) {;
 };
 
 // CSI Pt; Pl; Pb; Pr; Ps$ r
@@ -402,142 +256,6 @@ Terminal.prototype.setAttrInRectangle = function(params) {
     this.updateRange(params[2]);
 };
 
-// CSI ? Pm s
-// Save DEC Private Mode Values. Ps values are the same as for
-// DECSET.
-Terminal.prototype.savePrivateValues = function(params) {;
-};
-
-// CSI Ps ; Ps ; Ps t
-// Window manipulation (from dtterm, as well as extensions).
-// These controls may be disabled using the allowWindowOps
-// resource. Valid values for the first (and any additional
-// parameters) are:
-// Ps = 1 -> De-iconify window.
-// Ps = 2 -> Iconify window.
-// Ps = 3 ; x ; y -> Move window to [x, y].
-// Ps = 4 ; height ; width -> Resize the xterm window to
-// height and width in pixels.
-// Ps = 5 -> Raise the xterm window to the front of the stack-
-// ing order.
-// Ps = 6 -> Lower the xterm window to the bottom of the
-// stacking order.
-// Ps = 7 -> Refresh the xterm window.
-// Ps = 8 ; height ; width -> Resize the text area to
-// [height;width] in characters.
-// Ps = 9 ; 0 -> Restore maximized window.
-// Ps = 9 ; 1 -> Maximize window (i.e., resize to screen
-// size).
-// Ps = 1 0 ; 0 -> Undo full-screen mode.
-// Ps = 1 0 ; 1 -> Change to full-screen.
-// Ps = 1 1 -> Report xterm window state. If the xterm window
-// is open (non-iconified), it returns CSI 1 t . If the xterm
-// window is iconified, it returns CSI 2 t .
-// Ps = 1 3 -> Report xterm window position. Result is CSI 3
-// ; x ; y t
-// Ps = 1 4 -> Report xterm window in pixels. Result is CSI
-// 4 ; height ; width t
-// Ps = 1 8 -> Report the size of the text area in characters.
-// Result is CSI 8 ; height ; width t
-// Ps = 1 9 -> Report the size of the screen in characters.
-// Result is CSI 9 ; height ; width t
-// Ps = 2 0 -> Report xterm window's icon label. Result is
-// OSC L label ST
-// Ps = 2 1 -> Report xterm window's title. Result is OSC l
-// label ST
-// Ps = 2 2 ; 0 -> Save xterm icon and window title on
-// stack.
-// Ps = 2 2 ; 1 -> Save xterm icon title on stack.
-// Ps = 2 2 ; 2 -> Save xterm window title on stack.
-// Ps = 2 3 ; 0 -> Restore xterm icon and window title from
-// stack.
-// Ps = 2 3 ; 1 -> Restore xterm icon title from stack.
-// Ps = 2 3 ; 2 -> Restore xterm window title from stack.
-// Ps >= 2 4 -> Resize to Ps lines (DECSLPP).
-Terminal.prototype.manipulateWindow = function(params) {;
-};
-
-// CSI Pt; Pl; Pb; Pr; Ps$ t
-// Reverse Attributes in Rectangular Area (DECRARA), VT400 and
-// up.
-// Pt; Pl; Pb; Pr denotes the rectangle.
-// Ps denotes the attributes to reverse, i.e., 1, 4, 5, 7.
-// NOTE: xterm doesn't enable this code by default.
-Terminal.prototype.reverseAttrInRectangle = function(params) {;
-};
-
-// CSI > Ps; Ps t
-// Set one or more features of the title modes. Each parameter
-// enables a single feature.
-// Ps = 0 -> Set window/icon labels using hexadecimal.
-// Ps = 1 -> Query window/icon labels using hexadecimal.
-// Ps = 2 -> Set window/icon labels using UTF-8.
-// Ps = 3 -> Query window/icon labels using UTF-8. (See dis-
-// cussion of "Title Modes")
-Terminal.prototype.setTitleModeFeature = function(params) {;
-};
-
-// CSI Ps SP t
-// Set warning-bell volume (DECSWBV, VT520).
-// Ps = 0 or 1 -> off.
-// Ps = 2 , 3 or 4 -> low.
-// Ps = 5 , 6 , 7 , or 8 -> high.
-Terminal.prototype.setWarningBellVolume = function(params) {;
-};
-
-// CSI Ps SP u
-// Set margin-bell volume (DECSMBV, VT520).
-// Ps = 1 -> off.
-// Ps = 2 , 3 or 4 -> low.
-// Ps = 0 , 5 , 6 , 7 , or 8 -> high.
-Terminal.prototype.setMarginBellVolume = function(params) {;
-};
-
-// CSI Pt; Pl; Pb; Pr; Pp; Pt; Pl; Pp$ v
-// Copy Rectangular Area (DECCRA, VT400 and up).
-// Pt; Pl; Pb; Pr denotes the rectangle.
-// Pp denotes the source page.
-// Pt; Pl denotes the target location.
-// Pp denotes the target page.
-// NOTE: xterm doesn't enable this code by default.
-Terminal.prototype.copyRectangle = function(params) {;
-};
-
-// CSI Pt ; Pl ; Pb ; Pr ' w
-// Enable Filter Rectangle (DECEFR), VT420 and up.
-// Parameters are [top;left;bottom;right].
-// Defines the coordinates of a filter rectangle and activates
-// it. Anytime the locator is detected outside of the filter
-// rectangle, an outside rectangle event is generated and the
-// rectangle is disabled. Filter rectangles are always treated
-// as "one-shot" events. Any parameters that are omitted default
-// to the current locator position. If all parameters are omit-
-// ted, any locator motion will be reported. DECELR always can-
-// cels any prevous rectangle definition.
-Terminal.prototype.enableFilterRectangle = function(params) {;
-};
-
-// CSI Ps x Request Terminal Parameters (DECREQTPARM).
-// if Ps is a "0" (default) or "1", and xterm is emulating VT100,
-// the control sequence elicits a response of the same form whose
-// parameters describe the terminal:
-// Ps -> the given Ps incremented by 2.
-// Pn = 1 <- no parity.
-// Pn = 1 <- eight bits.
-// Pn = 1 <- 2 8 transmit 38.4k baud.
-// Pn = 1 <- 2 8 receive 38.4k baud.
-// Pn = 1 <- clock multiplier.
-// Pn = 0 <- STP flags.
-Terminal.prototype.requestParameters = function(params) {;
-};
-
-// CSI Ps x Select Attribute Change Extent (DECSACE).
-// Ps = 0 -> from start to end position, wrapped.
-// Ps = 1 -> from start to end position, wrapped.
-// Ps = 2 -> rectangle (exact).
-Terminal.prototype.selectChangeExtent = function(params) {;
-};
-
 // CSI Pc; Pt; Pl; Pb; Pr$ x
 // Fill Rectangular Area (DECFRA), VT420 and up.
 // Pc is the character to use.
@@ -564,24 +282,6 @@ Terminal.prototype.fillRectangle = function(params) {
     this.updateRange(params[3]);
 };
 
-// CSI Ps ; Pu ' z
-// Enable Locator Reporting (DECELR).
-// Valid values for the first parameter:
-// Ps = 0 -> Locator disabled (default).
-// Ps = 1 -> Locator enabled.
-// Ps = 2 -> Locator enabled for one report, then disabled.
-// The second parameter specifies the coordinate unit for locator
-// reports.
-// Valid values for the second parameter:
-// Pu = 0 <- or omitted -> default to character cells.
-// Pu = 1 <- device physical pixels.
-// Pu = 2 <- character cells.
-Terminal.prototype.enableLocatorReporting = function(params) {
-    var val = params[0] > 0;
-    //this.mouseEvents = val;
-    //this.decLocator = val;
-};
-
 // CSI Pt; Pl; Pb; Pr$ z
 // Erase Rectangular Area (DECERA), VT400 and up.
 // Pt; Pl; Pb; Pr denotes the rectangle.
@@ -606,69 +306,6 @@ Terminal.prototype.eraseRectangle = function(params) {
     // this.maxRange();
     this.updateRange(params[0]);
     this.updateRange(params[2]);
-};
-
-// CSI Pm ' {
-// Select Locator Events (DECSLE).
-// Valid values for the first (and any additional parameters)
-// are:
-// Ps = 0 -> only respond to explicit host requests (DECRQLP).
-// (This is default). It also cancels any filter
-// rectangle.
-// Ps = 1 -> report button down transitions.
-// Ps = 2 -> do not report button down transitions.
-// Ps = 3 -> report button up transitions.
-// Ps = 4 -> do not report button up transitions.
-Terminal.prototype.setLocatorEvents = function(params) {;
-};
-
-// CSI Pt; Pl; Pb; Pr$ {
-// Selective Erase Rectangular Area (DECSERA), VT400 and up.
-// Pt; Pl; Pb; Pr denotes the rectangle.
-Terminal.prototype.selectiveEraseRectangle = function(params) {;
-};
-
-// CSI Ps ' |
-// Request Locator Position (DECRQLP).
-// Valid values for the parameter are:
-// Ps = 0 , 1 or omitted -> transmit a single DECLRP locator
-// report.
-
-// If Locator Reporting has been enabled by a DECELR, xterm will
-// respond with a DECLRP Locator Report. This report is also
-// generated on button up and down events if they have been
-// enabled with a DECSLE, or when the locator is detected outside
-// of a filter rectangle, if filter rectangles have been enabled
-// with a DECEFR.
-
-// -> CSI Pe ; Pb ; Pr ; Pc ; Pp & w
-
-// Parameters are [event;button;row;column;page].
-// Valid values for the event:
-// Pe = 0 -> locator unavailable - no other parameters sent.
-// Pe = 1 -> request - xterm received a DECRQLP.
-// Pe = 2 -> left button down.
-// Pe = 3 -> left button up.
-// Pe = 4 -> middle button down.
-// Pe = 5 -> middle button up.
-// Pe = 6 -> right button down.
-// Pe = 7 -> right button up.
-// Pe = 8 -> M4 button down.
-// Pe = 9 -> M4 button up.
-// Pe = 1 0 -> locator outside filter rectangle.
-// ``button'' parameter is a bitmask indicating which buttons are
-// pressed:
-// Pb = 0 <- no buttons down.
-// Pb & 1 <- right button down.
-// Pb & 2 <- middle button down.
-// Pb & 4 <- left button down.
-// Pb & 8 <- M4 button down.
-// ``row'' and ``column'' parameters are the coordinates of the
-// locator position in the xterm window, encoded as ASCII deci-
-// mal.
-// The ``page'' parameter is not used by xterm, and will be omit-
-// ted.
-Terminal.prototype.requestLocatorPosition = function(params) {;
 };
 
 // CSI P m SP }
