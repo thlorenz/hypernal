@@ -11,12 +11,7 @@ var on       =  require('./lib/helpers/on')
   , inherits =  require('./lib/helpers/inherits')
   ;
 
-/**
-* Terminal
-*/
-
-var EventEmitter = require('events')
-    .EventEmitter;
+var EventEmitter = require('events').EventEmitter;
 
 module.exports = Terminal;
 
@@ -153,13 +148,7 @@ Terminal.prototype.is = function(term) {
         .indexOf(term) === 0;
 };
 
-Terminal.prototype.handler = function(data) {
-    this.emit('data', data);
-};
-
-Terminal.prototype.handleTitle = function(title) {
-    this.emit('title', title);
-};
+// require('./lib/handlers')(Terminal);
 
 require('./lib/ESC.js')(Terminal);
 
