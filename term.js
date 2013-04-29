@@ -125,18 +125,8 @@ require('./lib/resetMode')(Terminal);
 
 require('./lib/debug')(Terminal);
 
-Terminal.prototype.send = function(data) {
-    var self = this;
+require('./lib/send')(Terminal);
 
-    if (!this.queue) {
-        setTimeout(function() {
-            self.handler(self.queue);
-            self.queue = '';
-        }, 1);
-    }
-
-    this.queue += data;
-};
 
 
 Terminal.prototype.resize = function(x, y) {
