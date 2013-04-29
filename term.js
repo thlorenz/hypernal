@@ -166,43 +166,9 @@ require('./lib/ESC.js')(Terminal);
 require('./lib/csi/deviceStatus')(Terminal);
 require('./lib/csi/charAttributes')(Terminal);
 require('./lib/csi/insert-delete')(Terminal);
+require('./lib/csi/position')(Terminal);
 
 
-/**
-* CSI
-*/
-
-
-
-
-
-/**
-* Additions
-*/
-
-
-// CSI Pm ` Character Position Absolute
-// [column] (default = [row,1]) (HPA).
-Terminal.prototype.charPosAbsolute = function(params) {
-    var param = params[0];
-    if (param < 1) param = 1;
-    this.x = param - 1;
-    if (this.x >= this.cols) {
-        this.x = this.cols - 1;
-    }
-};
-
-// 141 61 a * HPR -
-// Horizontal Position Relative
-// reuse CSI Ps C ?
-Terminal.prototype.HPositionRelative = function(params) {
-    var param = params[0];
-    if (param < 1) param = 1;
-    this.x += param;
-    if (this.x >= this.cols) {
-        this.x = this.cols - 1;
-    }
-};
 
 // CSI Ps c Send Device Attributes (Primary DA).
 // Ps = 0 or omitted -> request attributes from terminal. The
