@@ -123,6 +123,8 @@ require('./lib/setgCharset');
 require('./lib/setMode')(Terminal);
 require('./lib/resetMode')(Terminal);
 
+require('./lib/debug')(Terminal);
+
 Terminal.prototype.send = function(data) {
     var self = this;
 
@@ -136,19 +138,6 @@ Terminal.prototype.send = function(data) {
     this.queue += data;
 };
 
-Terminal.prototype.log = function() {
-    if (!Terminal.debug) return;
-    if (!window.console || !window.console.log) return;
-    var args = Array.prototype.slice.call(arguments);
-    window.console.log.apply(window.console, args);
-};
-
-Terminal.prototype.error = function() {
-    if (!Terminal.debug) return;
-    if (!window.console || !window.console.error) return;
-    var args = Array.prototype.slice.call(arguments);
-    window.console.error.apply(window.console, args);
-};
 
 Terminal.prototype.resize = function(x, y) {
     var line, el, i, j, ch;
