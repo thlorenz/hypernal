@@ -12,71 +12,71 @@ var EventEmitter = require('events').EventEmitter;
 module.exports = Terminal;
 
 function Terminal(opts) {
-    opts = opts || {};
-    if (!(this instanceof Terminal)) return new Terminal(opts);
-    EventEmitter.call(this);
+  opts = opts || {};
+  if (!(this instanceof Terminal)) return new Terminal(opts);
+  EventEmitter.call(this);
 
-    this.cols = opts.cols || 500;
-    this.rows = opts.rows || 500;
+  this.cols = opts.cols || 500;
+  this.rows = opts.rows || 500;
 
-    if (opts.handler) {
-        this.on('data', opts.handler);
-    }
+  if (opts.handler) {
+      this.on('data', opts.handler);
+  }
 
-    this.ybase = 0;
-    this.ydisp = 0;
-    this.x = 0;
-    this.y = 0;
-    this.cursorState = 0;
-    this.cursorHidden = false;
-    this.convertEol = false;
-    this.state = states.normal;
-    this.queue = '';
-    this.scrollTop = 0;
-    this.scrollBottom = this.rows - 1;
+  this.ybase = 0;
+  this.ydisp = 0;
+  this.x = 0;
+  this.y = 0;
+  this.cursorState = 0;
+  this.cursorHidden = false;
+  this.convertEol = false;
+  this.state = states.normal;
+  this.queue = '';
+  this.scrollTop = 0;
+  this.scrollBottom = this.rows - 1;
 
-    // modes
-    this.applicationKeypad = false;
-    this.originMode = false;
-    this.insertMode = false;
-    this.wraparoundMode = false;
-    this.normal = null;
+  // modes
+  this.applicationKeypad = false;
+  this.originMode = false;
+  this.insertMode = false;
+  this.wraparoundMode = false;
+  this.normal = null;
 
-    // charset
-    this.charset = null;
-    this.gcharset = null;
-    this.glevel = 0;
-    this.charsets = [null];
+  // charset
+  this.charset = null;
+  this.gcharset = null;
+  this.glevel = 0;
+  this.charsets = [null];
 
-    // misc
-    this.element;
-    this.children;
-    this.refreshStart;
-    this.refreshEnd;
-    this.savedX;
-    this.savedY;
-    this.savedCols;
+  // misc
+  this.element;
+  this.children;
+  this.refreshStart;
+  this.refreshEnd;
+  this.savedX;
+  this.savedY;
+  this.savedCols;
 
-    // stream
-    this.readable = true;
-    this.writable = true;
+  // stream
+  this.readable = true;
+  this.writable = true;
 
-    this.defAttr = (257 << 9) | 256;
-    this.curAttr = this.defAttr;
+  this.defAttr = (257 << 9) | 256;
+  this.curAttr = this.defAttr;
 
-    this.params = [];
-    this.currentParam = 0;
-    this.prefix = '';
-    this.postfix = '';
+  this.params = [];
+  this.currentParam = 0;
+  this.prefix = '';
+  this.postfix = '';
 
-    this.lines = [];
-    var i = this.rows;
-    while (i--) {
-        this.lines.push(this.blankLine());
-    }
+  this.lines = [];
+  var i = this.rows;
+  while (i--) {
+      this.lines.push(this.blankLine());
+  }
 
-    this.tabs;
-    this.setupStops();
+  this.tabs;
+  this.setupStops();
 }
 
 inherits(Terminal, EventEmitter);
