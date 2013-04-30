@@ -1,7 +1,7 @@
 'use strict';
 /*jshint browser:true */
 
-var term = require('../index')(1000, 80);
+var term = require('../index')();
 term.appendTo('#terminal');
 
 var difflet = require('difflet')({

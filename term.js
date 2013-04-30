@@ -1,11 +1,7 @@
 'use strict';
 
-var states = require('./lib/states');
-
-/**
-* Helpers
-*/
-var on       =  require('./lib/helpers/on')
+var states   =  require('./lib/states')
+  , on       =  require('./lib/helpers/on')
   , off      =  require('./lib/helpers/off')
   , cancel   =  require('./lib/helpers/cancel')
   , inherits =  require('./lib/helpers/inherits')
@@ -15,17 +11,16 @@ var EventEmitter = require('events').EventEmitter;
 
 module.exports = Terminal;
 
-function Terminal(cols, rows, opts) {
-    if (!(this instanceof Terminal)) return new Terminal(cols, rows, opts);
+function Terminal(opts) {
+    opts = opts || {};
+    if (!(this instanceof Terminal)) return new Terminal(opts);
     EventEmitter.call(this);
 
-    this._options = opts || {};
+    this.cols = opts.cols || 500;
+    this.rows = opts.rows || 500;
 
-    this.cols = cols || Terminal.geometry[0];
-    this.rows = rows || Terminal.geometry[1];
-
-    if (this._options.handler) {
-        this.on('data', this._options.handler);
+    if (opts.handler) {
+        this.on('data', opts.handler);
     }
 
     this.ybase = 0;
@@ -82,8 +77,6 @@ function Terminal(cols, rows, opts) {
 
     this.tabs;
     this.setupStops();
-
-    this.tabspace = this._options.tabspace || '  ';
 }
 
 inherits(Terminal, EventEmitter);

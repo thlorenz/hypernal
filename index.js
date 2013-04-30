@@ -5,8 +5,8 @@ var Terminal = require('./term')
   , through = require('through')
   ;
 
-module.exports = function (cols, rows, opts) {
-  var term = new Terminal(cols, rows, opts);
+module.exports = function (opts) {
+  var term = new Terminal(opts);
   term.open();
   
   var hypernal = through(term.write.bind(term));
