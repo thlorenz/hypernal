@@ -1,7 +1,7 @@
 'use strict';
 /*jshint browser:true */
 
-var term = require('../index')(130, 80);
+var term = require('../index')(1000, 80);
 term.appendTo('#terminal');
 
 var difflet = require('difflet')({
@@ -13,7 +13,7 @@ var difflet = require('difflet')({
 var diff = difflet.compare({ a : [1, 2, 3 ], c : 5 }, { a : [1, 2, 3, 4 ], b : 4 });
 term.write(diff);
 
-var termcode = require('../index')(130, 80);
+var termcode = require('../index')(1000, 80);
 termcode.appendTo('#terminal-code');
 
 [ '\u001b[92m\'use strict\'\u001b[39m\u001b[90m;\u001b[39m',

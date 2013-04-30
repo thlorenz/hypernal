@@ -1,5 +1,5 @@
 #terminal, #terminal-code {
-  width         :  700px;
+  width         :  500px;
   height        :  200px;
   background    :  black;
   border-radius :  15px;
@@ -10,8 +10,10 @@
       Unifont,Lime,"ClearlyU PUA",Clean,"DejaVu Sans Mono","Lucida Console",
       "Bitstream Vera Sans Mono",Freemono,"Liberation Mono",Dina,Anka,Droid Sans Mono,
       Anonymous Pro,Proggy fonts,Envy Code R,Gamow,Courier,"Courier New",Terminal,monospace;
+  overflow-x : scroll;
+  overflow-y : scroll;
 }
 
 #terminal-code {
-  height: 600px;
+  height: 300px;
 }
