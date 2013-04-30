@@ -107,9 +107,6 @@ require('./lib/open')(Terminal);
 require('./lib/destroy')(Terminal);
 require('./lib/refresh')(Terminal);
 
-// used by write, but most likely can be removed
-require('./lib/scroll')(Terminal);
-
 require('./lib/write')(Terminal);
 
 require('./lib/setgLevel');
