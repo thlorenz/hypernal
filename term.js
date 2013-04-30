@@ -117,7 +117,6 @@ require('./lib/resetMode')(Terminal);
 
 require('./lib/debug')(Terminal);
 
-require('./lib/send')(Terminal);
 require('./lib/resize')(Terminal);
 require('./lib/stops')(Terminal);
 
@@ -132,11 +131,9 @@ require('./lib/esc/index.js')(Terminal);
 require('./lib/esc/reset.js')(Terminal);
 require('./lib/esc/tabSet.js')(Terminal);
 
-require('./lib/csi/deviceStatus')(Terminal);
 require('./lib/csi/charAttributes')(Terminal);
 require('./lib/csi/insert-delete')(Terminal);
 require('./lib/csi/position')(Terminal);
-require('./lib/csi/sendDeviceAttributes')(Terminal);
 require('./lib/csi/cursor')(Terminal);
 require('./lib/csi/scroll')(Terminal);
 require('./lib/csi/rectangle')(Terminal);
