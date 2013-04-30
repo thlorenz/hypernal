@@ -1,11 +1,7 @@
 'use strict';
 
 var states   =  require('./lib/states')
-  , on       =  require('./lib/helpers/on')
-  , off      =  require('./lib/helpers/off')
-  , cancel   =  require('./lib/helpers/cancel')
-  , inherits =  require('./lib/helpers/inherits')
-  ;
+  , cancel   =  require('./lib/helpers/cancel');
 
 module.exports = Terminal;
 
