@@ -117,7 +117,6 @@ require('./lib/resetMode')(Terminal);
 
 require('./lib/debug')(Terminal);
 
-require('./lib/resize')(Terminal);
 require('./lib/stops')(Terminal);
 
 require('./lib/erase')(Terminal);
