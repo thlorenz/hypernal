@@ -14,6 +14,7 @@ module.exports = function (opts) {
     if (typeof elem === 'string') elem = document.querySelector(elem);
 
     elem.appendChild(term.element);
+    elem.setAttribute('style', 'overflow-y : scroll;');
     term.element.style.position = 'relative';
   };
 
