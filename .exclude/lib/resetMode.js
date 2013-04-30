@@ -130,11 +130,11 @@ module.exports = function (Terminal) {
         // button event mouse
       case 1003:
         // any event mouse
-        this.x10Mouse = false;
-        this.vt200Mouse = false;
-        this.normalMouse = false;
-        this.mouseEvents = false;
-        this.element.style.cursor = '';
+        //- this.x10Mouse = false;
+        //- this.vt200Mouse = false;
+        //- this.normalMouse = false;
+        //- this.mouseEvents = false;
+        //- this.element.style.cursor = '';
         break;
       case 1004:
         // send focusin/focusout events
@@ -142,15 +142,15 @@ module.exports = function (Terminal) {
         break;
       case 1005:
         // utf8 ext mode mouse
-        this.utfMouse = false;
+        //- this.utfMouse = false;
         break;
       case 1006:
         // sgr ext mode mouse
-        this.sgrMouse = false;
+        //- this.sgrMouse = false;
         break;
       case 1015:
         // urxvt ext mode mouse
-        this.urxvtMouse = false;
+        //- this.urxvtMouse = false;
         break;
       case 25:
         // hide cursor

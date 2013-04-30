@@ -146,12 +146,11 @@ module.exports = function (Terminal) {
         // any event mouse
         // any event - sends motion events,
         // even if there is no button held down.
-        this.x10Mouse = params === 9;
-        this.vt200Mouse = params === 1000;
-        this.normalMouse = params > 1000;
-        this.mouseEvents = true;
-        this.element.style.cursor = 'default';
-        this.log('Binding to mouse events.');
+        //- this.x10Mouse = params === 9;
+        //- this.vt200Mouse = params === 1000;
+        //- this.normalMouse = params > 1000;
+        //- this.mouseEvents = true;
+        //- this.element.style.cursor = 'default';
         break;
       case 1004:
         // send focusin/focusout events

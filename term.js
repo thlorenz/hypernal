@@ -112,9 +112,6 @@ require('./lib/write')(Terminal);
 require('./lib/setgLevel');
 require('./lib/setgCharset');
 
-require('./lib/setMode')(Terminal);
-require('./lib/resetMode')(Terminal);
-
 require('./lib/debug')(Terminal);
 
 require('./lib/stops')(Terminal);
