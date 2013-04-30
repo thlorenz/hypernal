@@ -7,21 +7,14 @@ var states   =  require('./lib/states')
   , inherits =  require('./lib/helpers/inherits')
   ;
 
-var EventEmitter = require('events').EventEmitter;
-
 module.exports = Terminal;
 
 function Terminal(opts) {
   opts = opts || {};
   if (!(this instanceof Terminal)) return new Terminal(opts);
-  EventEmitter.call(this);
 
   this.cols = opts.cols || 500;
   this.rows = opts.rows || 500;
-
-  if (opts.handler) {
-      this.on('data', opts.handler);
-  }
 
   this.ybase = 0;
   this.ydisp = 0;
@@ -79,8 +72,6 @@ function Terminal(opts) {
   this.setupStops();
 }
 
-inherits(Terminal, EventEmitter);
-
 require('./lib/colors')(Terminal);
 require('./lib/options')(Terminal);
 
@@ -102,8 +93,6 @@ require('./lib/blankLine')(Terminal);
 require('./lib/range')(Terminal);
 require('./lib/util')(Terminal);
 
-require('./lib/handlers')(Terminal);
-
 require('./lib/esc/index.js')(Terminal);
 require('./lib/esc/reset.js')(Terminal);
 require('./lib/esc/tabSet.js')(Terminal);
@@ -118,7 +107,4 @@ require('./lib/csi/softReset')(Terminal);
 
 require('./lib/charsets.js')(Terminal);
 
-Terminal.EventEmitter = EventEmitter;
-Terminal.on = on;
-Terminal.off = off;
 Terminal.cancel = cancel;
