@@ -134,7 +134,6 @@ require('./lib/csi/charAttributes')(Terminal);
 require('./lib/csi/insert-delete')(Terminal);
 require('./lib/csi/position')(Terminal);
 require('./lib/csi/cursor')(Terminal);
-require('./lib/csi/rectangle')(Terminal);
 require('./lib/csi/repeatPrecedingCharacter')(Terminal);
 require('./lib/csi/tabClear')(Terminal);
 require('./lib/csi/softReset')(Terminal);
