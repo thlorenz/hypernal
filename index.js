@@ -5,7 +5,13 @@ var Terminal = require('./term')
   , through = require('through')
   ;
 
+function scroll(elem) {
+  if (!elem) return;
+  elem.scrollTop = elem.scrollHeight;
+}
+
 module.exports = function (opts) {
+  opts = opts || {};
   var term = new Terminal(opts);
   term.open();
   
@@ -15,15 +21,21 @@ module.exports = function (opts) {
 
     elem.appendChild(term.element);
     elem.setAttribute('style', 'overflow-y : scroll;');
+    hypernal.container = elem;
     term.element.style.position = 'relative';
   };
 
   hypernal.writeln = function (line) {
     term.writeln(line);
+    if (opts.autoscroll) scroll(hypernal.container);
+  };
+
+  hypernal.write = function (data) {
+    term.write(data);
+    if (opts.autoscroll) scroll(hypernal.container);
   };
 
   // convenience shortcuts
-  hypernal.write   =  term.write.bind(term);
   hypernal.reset   =  term.reset.bind(term);
   hypernal.element =  term.element;
 
