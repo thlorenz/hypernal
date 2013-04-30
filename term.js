@@ -1,7 +1,6 @@
 'use strict';
 
-var states   =  require('./lib/states')
-  , cancel   =  require('./lib/helpers/cancel');
+var states = require('./lib/states');
 
 module.exports = Terminal;
 
@@ -102,5 +101,3 @@ require('./lib/csi/tabClear')(Terminal);
 require('./lib/csi/softReset')(Terminal);
 
 require('./lib/charsets.js')(Terminal);
-
-Terminal.cancel = cancel;
