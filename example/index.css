@@ -1,5 +1,5 @@
 #terminal, #terminal-code {
-  width         :  500px;
+  width         :  700px;
   height        :  200px;
   background    :  black;
   border-radius :  15px;
@@ -13,5 +13,5 @@
 }
 
 #terminal-code {
-  height: 300px;
+  height: 400px;
 }
