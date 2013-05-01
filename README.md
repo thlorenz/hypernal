@@ -6,7 +6,7 @@ Renders terminal output as html to simplify reusing server side modules in the b
 
 **main.js**
 ```js
-var term = require('hypernal')(100, 80);
+var term = require('hypernal');
 term.appendTo('#terminal');
 
 var difflet = require('difflet')({
@@ -63,12 +63,17 @@ View [more complete example](http://thlorenz.github.com/hypernal/) and its [sour
 
 ## API
 
-***hypernal(rows:Number, cols:Number, options:Object)***
+***hypernal(options:Object)***
 
-creates a **render only** terminal with the given rows and columns and returns an interface to interact with it as described below.
+creates a **render only** terminal and returns an interface to interact with it as described below.
 
 **options**:
-- `tabspace:String` spaces with which to replace encountered `'\t'` characters, default is `'  '`
+- allow overriding `{ cols: Number, rows: Number }` of the terminal, which generally is not necessary
+
+***term.tail:Boolean***
+
+- when set to true, the terminal will automatically scroll to the bottom when more lines are added than fit in its
+  container
 
 ***term.appendTo(elem:String|Object)***
 
@@ -88,4 +93,4 @@ clears the terminal
 
 ## Kudos
 
-hypernal is basically a trimmed down version of [tty.js](https://github.com/chjj/tty.js/) focused on rendering only.
+hypernal is basically a trimmed down version of [tty.js](https://github.com/chjj/tty.js/) focused on and improved for rendering only.
