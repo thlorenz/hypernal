@@ -11,7 +11,6 @@ function scroll(elem) {
 }
 
 module.exports = function (opts) {
-  opts = opts || {};
   var term = new Terminal(opts);
   term.open();
   
@@ -20,19 +19,19 @@ module.exports = function (opts) {
     if (typeof elem === 'string') elem = document.querySelector(elem);
 
     elem.appendChild(term.element);
-    elem.setAttribute('style', 'overflow-y : scroll;');
+    elem.setAttribute('style', 'overflow-y : auto;');
     hypernal.container = elem;
     term.element.style.position = 'relative';
   };
 
   hypernal.writeln = function (line) {
     term.writeln(line);
-    if (opts.autoscroll) scroll(hypernal.container);
+    if (hypernal.tail) scroll(hypernal.container);
   };
 
   hypernal.write = function (data) {
     term.write(data);
-    if (opts.autoscroll) scroll(hypernal.container);
+    if (hypernal.tail) scroll(hypernal.container);
   };
 
   // convenience shortcuts
