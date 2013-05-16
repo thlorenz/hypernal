@@ -13,6 +13,7 @@ var difflet = require('difflet')({
 var diff = difflet.compare({ a : [1, 2, 3 ], c : 5 }, { a : [1, 2, 3, 4 ], b : 4 });
 term.write(diff);
 
+// starting out with just 10 rows, however if more are needed, they are added on demand
 var termcode = require('../index')( { rows: 10 });
 termcode.appendTo('#terminal-code');
 
@@ -45,3 +46,4 @@ termcode.appendTo('#terminal-code');
   '\u001b[33m}\u001b[39m\u001b[90m;\u001b[39m',
   '' 
 ].forEach(function (line) { termcode.writeln(line); });
+

@@ -69,6 +69,9 @@ creates a **render only** terminal and returns an interface to interact with it 
 
 **options**:
 - allow overriding `{ cols: Number, rows: Number }` of the terminal, which generally is not necessary
+**Note:**
+  - number of cols will be applied to any row
+  - number of rows will indicate how many rows to add initially, but more will be added if needed
 
 ***term.tail:Boolean***
 

@@ -9,7 +9,7 @@ function Terminal(opts) {
   if (!(this instanceof Terminal)) return new Terminal(opts);
 
   this.cols = opts.cols || 500;
-  this.rows = opts.rows || 500;
+  this.rows = opts.rows || 100;
 
   this.ybase = 0;
   this.ydisp = 0;
