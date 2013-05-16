@@ -4,7 +4,7 @@
   "description": "Renders terminal output as html to simplify reusing server side modules in the browser.",
   "main": "hypernal.js",
   "scripts": {
-    "test": "node-trap test/*.js",
+    "test": "echo 'no tests yet :('",
     "demo": "node example/build && npm install opener && opener example/index.html"
   },
   "repository": {
