@@ -6,7 +6,7 @@ Renders terminal output as html to simplify reusing server side modules in the b
 
 **main.js**
 ```js
-var term = require('hypernal');
+var term = require('hypernal')();
 term.appendTo('#terminal');
 
 var difflet = require('difflet')({
