@@ -1,6 +1,6 @@
 {
   "name": "hypernal",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "Renders terminal output as html to simplify reusing server side modules in the browser.",
   "main": "index.js",
   "scripts": {
