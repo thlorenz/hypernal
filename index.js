@@ -1,9 +1,13 @@
 'use strict';
-/*jshint browser:true */
 
 var Terminal = require('./term')
   , through = require('through')
   ;
+
+function style(termElem) {
+  var currentStyle = termElem.getAttribute('style') || '';
+  termElem.setAttribute('style', currentStyle + 'overflow-y: auto; white-space: pre; position: relative;');
+}
 
 function scroll(elem) {
   if (!elem) return;
@@ -19,9 +23,8 @@ module.exports = function (opts) {
     if (typeof elem === 'string') elem = document.querySelector(elem);
 
     elem.appendChild(term.element);
-    elem.setAttribute('style', 'overflow-y : auto;');
+    style(elem);
     hypernal.container = elem;
-    term.element.style.position = 'relative';
   };
 
   hypernal.writeln = function (line) {
