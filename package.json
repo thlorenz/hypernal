@@ -13,7 +13,7 @@
   },
   "homepage": "https://github.com/thlorenz/hypernal",
   "dependencies": {
-    "through": "~2.2.7"
+    "through": "~2.3.4"
   },
   "devDependencies": {
     "browserify": "~2.11.0",
