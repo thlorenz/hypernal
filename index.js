@@ -4,9 +4,14 @@ var Terminal = require('./term')
   , through = require('through')
   ;
 
-function style(termElem) {
-  var currentStyle = termElem.getAttribute('style') || '';
-  termElem.setAttribute('style', currentStyle + 'overflow-y: auto; position: relative;');
+function style(parentElem) {
+  var currentStyle = parentElem.getAttribute('style') || '';
+  // TODO: make white-space work
+  // white-space: pre has the following problem:
+  // If applied before the terminal is visible, things break horribly to the point that the output is either
+  // shifted to the left or not visible at all.
+  // However when this style is set after the parent element became visible, it works fine.
+  parentElem.setAttribute('style', currentStyle + 'overflow-y: auto; /* white-space: pre; */');
 }
 
 function scroll(elem) {
@@ -19,12 +24,13 @@ module.exports = function (opts) {
   term.open();
   
   var hypernal = through(term.write.bind(term));
-  hypernal.appendTo = function (elem) {
-    if (typeof elem === 'string') elem = document.querySelector(elem);
+  hypernal.appendTo = function (parent) {
+    if (typeof parent === 'string') parent = document.querySelector(parent);
 
-    elem.appendChild(term.element);
-    style(elem);
-    hypernal.container = elem;
+    parent.appendChild(term.element);
+    style(parent);
+    hypernal.container = parent;
+    term.element.style.position = 'relative';
   };
 
   hypernal.writeln = function (line) {
