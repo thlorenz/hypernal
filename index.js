@@ -8,8 +8,11 @@ function style(parentElem) {
   var currentStyle = parentElem.getAttribute('style') || '';
   // TODO: make white-space work
   // white-space: pre has the following problem:
-  // If applied before the terminal is visible, things break horribly to the point that the output is either
-  // shifted to the left or not visible at all.
+  // If applied before the terminal is visible, things break horribly 
+  // to the point that the output is either shifted to the left or not visible at all.
+  // (at least for hyperwatch, to repro: -- npm install hyperwatch; npm explore hyperwatch; npm run demo; ) 
+  //  - most likely due to the fact that hyperwatch is positioned absolute
+  //
   // However when this style is set after the parent element became visible, it works fine.
   parentElem.setAttribute('style', currentStyle + 'overflow-y: auto; /* white-space: pre; */');
 }
