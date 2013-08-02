@@ -6,7 +6,7 @@ var Terminal = require('./term')
 
 function style(termElem) {
   var currentStyle = termElem.getAttribute('style') || '';
-  termElem.setAttribute('style', currentStyle + 'overflow-y: auto; white-space: pre; position: relative;');
+  termElem.setAttribute('style', currentStyle + 'overflow-y: auto; position: relative;');
 }
 
 function scroll(elem) {
