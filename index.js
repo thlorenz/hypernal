@@ -17,9 +17,13 @@ function style(parentElem) {
   parentElem.setAttribute('style', currentStyle + 'overflow-y: auto; /* white-space: pre; */');
 }
 
-function scroll(elem) {
+function scrollToBottom(elem) {
   if (!elem) return;
   elem.scrollTop = elem.scrollHeight;
+}
+
+function isScrolledToBottom(elem) {
+  return !!elem && elem.scrollHeight - elem.clientHeight <= elem.scrollTop + 1;
 }
 
 module.exports = function (opts) {
@@ -37,13 +41,15 @@ module.exports = function (opts) {
   };
 
   hypernal.writeln = function (line) {
+    var shouldScrollToBottom = hypernal.tail && isScrolledToBottom(hypernal.container);
     term.writeln(line);
-    if (hypernal.tail) scroll(hypernal.container);
+    if (shouldScrollToBottom) scrollToBottom(hypernal.container);
   };
 
   hypernal.write = function (data) {
+    var shouldScrollToBottom = hypernal.tail && isScrolledToBottom(hypernal.container);
     term.write(data);
-    if (hypernal.tail) scroll(hypernal.container);
+    if (shouldScrollToBottom) scrollToBottom(hypernal.container);
   };
 
   // convenience shortcuts
