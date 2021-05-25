@@ -24,7 +24,7 @@ function scroll(elem) {
 
 module.exports = function (opts) {
   var term = new Terminal(opts);
-  term.open();
+  term.open(opts);
   
   var hypernal = through(term.write.bind(term));
   hypernal.appendTo = function (parent) {

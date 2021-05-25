@@ -13,6 +13,8 @@
   },
   "homepage": "https://github.com/thlorenz/hypernal",
   "dependencies": {
+    "mold-source-map": "^0.4.0",
+    "opener": "^1.5.2",
     "through": "~2.3.4"
   },
   "devDependencies": {
