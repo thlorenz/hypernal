@@ -1,7 +1,7 @@
 'use strict';
 /*jshint browser:true */
 
-var term = require('../index')();
+var term = require('../index')({bgColor: "green"});
 term.appendTo('#terminal');
 
 var difflet = require('difflet')({
@@ -14,7 +14,7 @@ var diff = difflet.compare({ a : [1, 2, 3 ], c : 5 }, { a : [1, 2, 3, 4 ], b : 4
 term.write(diff);
 
 // starting out with just 10 rows, however if more are needed, they are added on demand
-var termcode = require('../index')( { rows: 10 });
+var termcode = require('../index')( { rows: 10, bgColor:"red"});
 termcode.appendTo('#terminal-code');
 
 [ '\u001b[92m\'use strict\'\u001b[39m\u001b[90m;\u001b[39m',
